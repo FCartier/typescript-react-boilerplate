@@ -13,8 +13,15 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)?$/,
         loader: 'awesome-typescript-loader'
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
       },
       {
         enforce: 'pre',
@@ -29,6 +36,14 @@ module.exports = {
             loader: 'css-loader',
           },
           'sass-loader'
+        ]
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
         ]
       }
     ]
@@ -46,6 +61,6 @@ module.exports = {
     hot: true,
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
   }
 };
